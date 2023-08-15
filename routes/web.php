@@ -48,3 +48,27 @@ Route::get('morph-many', function () {
         echo $comment->body."<br>";
     }
 });
+
+//one of many
+Route::get('oldest-image', function(){
+    $user = User::find(4);
+    $oldestImage = $user->oldestImage;
+    if($oldestImage){
+        echo "Oldest image of user id: {$oldestImage->id} => ".$oldestImage->url."<br>";
+    }
+
+    $post = Post::find(2);
+    $oI = $post->oldestImage;
+    if($oI){
+        echo "Oldest image of post id: {$oI->id} => ". $oI->url."<br>";
+    }
+});
+
+//most liked
+Route::get('most-liked', function(){
+    $user = User::find(2);
+    $mostLiked = $user->bestImage;
+    if($mostLiked){
+        echo $mostLiked->url."<br>";
+    }
+});

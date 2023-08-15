@@ -42,8 +42,23 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function image():MorphOne
+    public function image(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function latestImage(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable')->latestOfMany();
+    }
+
+    public function oldestImage(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable')->oldestOfMany();
+    }
+
+    public function bestImage(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable')->ofMany('likes', 'max');
     }
 }

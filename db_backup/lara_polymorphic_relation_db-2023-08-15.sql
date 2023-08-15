@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2023 at 11:42 AM
+-- Generation Time: Aug 15, 2023 at 01:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -71,6 +71,7 @@ CREATE TABLE `images` (
   `url` varchar(100) NOT NULL,
   `imageable_id` int(11) NOT NULL,
   `imageable_type` varchar(50) NOT NULL,
+  `likes` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -79,38 +80,38 @@ CREATE TABLE `images` (
 -- Dumping data for table `images`
 --
 
-INSERT INTO `images` (`id`, `url`, `imageable_id`, `imageable_type`, `created_at`, `updated_at`) VALUES
-(1, 'https://picsum.photos/200/300', 1, 'App\\Models\\Post', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(2, 'https://picsum.photos/200', 1, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(3, 'https://picsum.photos/200/300', 2, 'App\\Models\\Post', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(4, 'https://picsum.photos/200/300', 3, 'App\\Models\\Post', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(5, 'https://picsum.photos/200/300', 4, 'App\\Models\\Post', '2023-08-14 17:21:42', '2023-08-14 16:49:34'),
-(6, 'https://picsum.photos/200/300', 5, 'App\\Models\\Post', '2023-08-14 17:21:46', '2023-08-14 16:49:34'),
-(7, 'https://picsum.photos/200/300', 6, 'App\\Models\\Post', '2023-08-14 17:21:49', '2023-08-14 16:49:34'),
-(8, 'https://picsum.photos/200/300', 7, 'App\\Models\\Post', '2023-08-14 17:21:53', '2023-08-14 16:49:34'),
-(9, 'https://picsum.photos/200/300', 8, 'App\\Models\\Post', '2023-08-14 17:21:57', '2023-08-14 16:49:34'),
-(10, 'https://picsum.photos/200/300', 9, 'App\\Models\\Post', '2023-08-14 17:22:00', '2023-08-14 16:49:34'),
-(11, 'https://picsum.photos/200/300', 10, 'App\\Models\\Post', '2023-08-14 17:22:05', '2023-08-14 16:49:34'),
-(12, 'https://picsum.photos/200/300', 11, 'App\\Models\\Post', '2023-08-14 17:22:09', '2023-08-14 16:49:34'),
-(13, 'https://picsum.photos/200/300', 12, 'App\\Models\\Post', '2023-08-14 17:22:14', '2023-08-14 16:49:34'),
-(14, 'https://picsum.photos/200/300', 13, 'App\\Models\\Post', '2023-08-14 17:22:16', '2023-08-14 16:49:34'),
-(15, 'https://picsum.photos/200/300', 14, 'App\\Models\\Post', '2023-08-14 17:22:20', '2023-08-14 16:49:34'),
-(16, 'https://picsum.photos/200/300', 15, 'App\\Models\\Post', '2023-08-14 17:22:23', '2023-08-14 16:49:34'),
-(17, 'https://picsum.photos/200/300', 16, 'App\\Models\\Post', '2023-08-14 17:22:27', '2023-08-14 16:49:34'),
-(18, 'https://picsum.photos/200/300', 17, 'App\\Models\\Post', '2023-08-14 17:22:30', '2023-08-14 16:49:34'),
-(19, 'https://picsum.photos/200/300', 18, 'App\\Models\\Post', '2023-08-14 17:22:34', '2023-08-14 16:49:34'),
-(22, 'https://picsum.photos/200', 2, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(23, 'https://picsum.photos/200', 2, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(24, 'https://picsum.photos/200', 3, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(25, 'https://picsum.photos/200', 4, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(26, 'https://picsum.photos/200', 5, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(27, 'https://picsum.photos/200', 6, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(28, 'https://picsum.photos/200', 7, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(29, 'https://picsum.photos/200', 8, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(30, 'https://picsum.photos/200', 9, 'App\\Models\\User', '2023-08-14 16:49:34', '2023-08-14 16:49:34'),
-(32, 'https://picsum.photos/200/300', 19, 'App\\Models\\Post', '2023-08-14 11:45:14', '2023-08-14 11:45:14'),
-(33, 'https://picsum.photos/200/300', 20, 'App\\Models\\Post', '2023-08-14 11:45:14', '2023-08-14 11:45:14'),
-(34, 'https://picsum.photos/200', 10, 'App\\Models\\User', '2023-08-14 11:45:14', '2023-08-14 11:45:14');
+INSERT INTO `images` (`id`, `url`, `imageable_id`, `imageable_type`, `likes`, `created_at`, `updated_at`) VALUES
+(1, 'https://picsum.photos/200/300', 1, 'App\\Models\\Post', 85, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(2, 'https://picsum.photos/200', 1, 'App\\Models\\User', 87, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(3, 'https://picsum.photos/200/301', 2, 'App\\Models\\Post', 69, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(4, 'https://picsum.photos/200/302', 3, 'App\\Models\\Post', 72, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(5, 'https://picsum.photos/200/303', 4, 'App\\Models\\Post', 42, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(6, 'https://picsum.photos/200/304', 5, 'App\\Models\\Post', 73, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(7, 'https://picsum.photos/200/305', 6, 'App\\Models\\Post', 36, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(8, 'https://picsum.photos/200/306', 7, 'App\\Models\\Post', 41, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(9, 'https://picsum.photos/200/307', 8, 'App\\Models\\Post', 80, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(10, 'https://picsum.photos/200/308', 9, 'App\\Models\\Post', 74, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(11, 'https://picsum.photos/200/309', 10, 'App\\Models\\Post', 19, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(12, 'https://picsum.photos/200/310', 11, 'App\\Models\\Post', 50, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(13, 'https://picsum.photos/200/311', 12, 'App\\Models\\Post', 83, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(14, 'https://picsum.photos/200/312', 13, 'App\\Models\\Post', 58, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(15, 'https://picsum.photos/200/313', 14, 'App\\Models\\Post', 28, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(16, 'https://picsum.photos/200/314', 15, 'App\\Models\\Post', 46, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(17, 'https://picsum.photos/200/315', 16, 'App\\Models\\Post', 37, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(18, 'https://picsum.photos/200/316', 17, 'App\\Models\\Post', 33, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(19, 'https://picsum.photos/200/317', 18, 'App\\Models\\Post', 39, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(22, 'https://picsum.photos/201', 2, 'App\\Models\\User', 82, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(23, 'https://picsum.photos/202', 2, 'App\\Models\\User', 87, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(24, 'https://picsum.photos/203', 3, 'App\\Models\\User', 78, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(25, 'https://picsum.photos/204', 4, 'App\\Models\\User', 18, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(26, 'https://picsum.photos/205', 5, 'App\\Models\\User', 32, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(27, 'https://picsum.photos/206', 6, 'App\\Models\\User', 92, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(28, 'https://picsum.photos/207', 7, 'App\\Models\\User', 60, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(29, 'https://picsum.photos/208', 8, 'App\\Models\\User', 107, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(30, 'https://picsum.photos/209', 9, 'App\\Models\\User', 50, '2023-08-15 11:37:41', '2023-08-14 16:49:34'),
+(32, 'https://picsum.photos/200/318', 19, 'App\\Models\\Post', 110, '2023-08-15 11:37:41', '2023-08-14 11:45:14'),
+(33, 'https://picsum.photos/200/319', 20, 'App\\Models\\Post', 97, '2023-08-15 11:37:41', '2023-08-14 11:45:14'),
+(34, 'https://picsum.photos/210', 10, 'App\\Models\\User', 46, '2023-08-15 11:37:41', '2023-08-14 11:45:14');
 
 -- --------------------------------------------------------
 
