@@ -27,6 +27,7 @@ Route::get('users', function () {
     }
 });
 
+//one to one polymorphic relation
 Route::get('morph-one', function () {
     //find image from post
     $post = Post::find(3);
@@ -37,4 +38,13 @@ Route::get('morph-one', function () {
     $image = Image::find(25);
     $imageable = $image->imageable;
     dump($imageable);
+});
+
+//one to many polymorphic relation
+Route::get('morph-many', function () {
+    //find image from post
+    $post = Post::find(2);
+    foreach($post->comments as $comment){
+        echo $comment->body."<br>";
+    }
 });
